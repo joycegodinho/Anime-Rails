@@ -14,7 +14,8 @@ module Mutations
         title: title,
         option: option,
         number: number,
-        content: content
+        content: content,
+        user: context[:current_user]
       )
     end
   end
