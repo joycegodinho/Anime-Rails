@@ -7,10 +7,14 @@ module Mutations
     type Types::NoteType
 
     def resolve(id: nil)
-      delete = Note.find_by(
-        id: id
-      )
-      delete.destroy
+      note = Note.find_by( id: id )
+      user = User.find_by( id: context[:current_user] )
+
+      if user.id == note.user_id
+        note.destroy
+        return note
+      end
+
     end
   end
 end

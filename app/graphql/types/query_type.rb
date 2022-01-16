@@ -11,7 +11,7 @@ module Types
     field :all_notes, [NoteType], null: false
     # this method is invoked, when `all_link` fields is being resolved
     def all_notes
-      Note.all
+      Note.where(user_id: context[:current_user]).order(created_at: :desc)
     end
 
   end
